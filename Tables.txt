@@ -1,0 +1,38 @@
+Computers
+    ID int PK
+    Hostname string
+    Approved bit
+
+Jobs
+    ID int PK
+    Name string
+    Period string
+    Type int
+    TargetFileType bit
+    Sources string
+    Targets string
+    End datetime
+    Start datetime
+    Active bit
+    Retention int
+
+ComputersJobs
+    ID PK
+    ComputerID int FK
+    JobID int FK
+
+Log
+    ID int PK
+    ComputerID int FK
+    JobID int FK
+    Type int
+    Date datetime
+    Message string
+
+Accounts
+    ID int PK
+    Username string
+    Password string
+    Admin bit
+    Email string
+    SendReports bit
