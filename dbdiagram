@@ -1,0 +1,50 @@
+Table Computers {
+    ID int [pk]
+    Hostname varchar
+    Approved bit [not null]
+}
+
+Table Jobs {
+    ID int [pk]
+    Name varchar [not null, unique]
+    Period varchar [not null]
+    Type int [not null]
+    TargetFileType bit [not null]
+    Sources nvarchar
+    Targets nvarchar
+    End datetime
+    Start datetime
+    Paused bit [not null]
+    Retention int
+}
+
+Table ComputersJobs {
+    ID int [pk]
+    ComputerID int [ref: > Computers.ID, not null]
+    JobID int [ref: > Jobs.ID, not null]
+    Active bit
+}
+
+Table Log {
+    ID int [pk]
+    ComputerID int [ref: > Computers.ID, not null]
+    JobID int [ref: > Jobs.ID]
+    Type int [not null]
+    Date datetime [not null]
+    Message nvarchar [not null]
+}
+
+Table Accounts {
+    ID int [pk]
+    Username nvarchar [not null, unique]
+    Password nvarchar [not null] //Hashed
+    Admin bit [not null]
+    Email varchar
+    SendReports bit [not null]
+}
+
+Table Sessions {
+    Token varchar [pk] //Hashed
+    UserID int [ref: > Accounts.ID]
+    LastAccess datetime
+}
