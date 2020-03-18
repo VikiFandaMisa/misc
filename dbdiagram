@@ -1,10 +1,13 @@
 Table Computers {
     ID int [pk]
     Hostname varchar
-    Approved bit [not null]
+    LastSeen datetime
+    IP varchar
+    MAC varchar
+    Status tinyint [not null] //1,2,3 - statusy pending, approved, denied
 }
 
-Table Jobs {
+Table Templates {
     ID int [pk]
     Name varchar [not null, unique]
     Period varchar [not null]
@@ -18,7 +21,7 @@ Table Jobs {
     Retention int
 }
 
-Table ComputersJobs {
+Table Jobs {
     ID int [pk]
     ComputerID int [ref: > Computers.ID, not null]
     JobID int [ref: > Jobs.ID, not null]
@@ -27,7 +30,6 @@ Table ComputersJobs {
 
 Table Log {
     ID int [pk]
-    ComputerID int [ref: > Computers.ID, not null]
     JobID int [ref: > Jobs.ID]
     Type int [not null]
     Date datetime [not null]
