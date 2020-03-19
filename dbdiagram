@@ -3,8 +3,8 @@ Table Computers {
     Hostname varchar
     LastSeen datetime
     IP varchar
-    MAC varchar
-    Status tinyint [not null] //1,2,3 - statusy pending, approved, denied
+    MAC varchar [unique]
+    Status tinyint [not null] //1,2,3 - statusy pending, approved, denied                                
 }
 
 Table Templates {
@@ -13,18 +13,31 @@ Table Templates {
     Period varchar [not null]
     Type int [not null]
     TargetFileType bit [not null]
-    Sources nvarchar
-    Targets nvarchar
     End datetime
     Start datetime
     Paused bit [not null]
     Retention int
 }
 
+Table Paths {
+    ID int [pk]
+    TemplateID int [ref: > Templates.ID, not null]
+    FTPID int [ref: - FTP.ID]
+    Source bit [not null]
+    Path nvarchar [not null]
+}
+
+Table FTP {
+    ID int [pk]
+    Hostname varchar [not null]
+    Username nvarchar
+    Password nvarchar
+}
+
 Table Jobs {
     ID int [pk]
     ComputerID int [ref: > Computers.ID, not null]
-    JobID int [ref: > Jobs.ID, not null]
+    TemplateID int [ref: > Templates.ID, not null]
     Active bit
 }
 
@@ -43,6 +56,7 @@ Table Accounts {
     Admin bit [not null]
     Email varchar
     SendReports bit [not null]
+    ReportPeriod varchar [not null]
 }
 
 Table Sessions {
