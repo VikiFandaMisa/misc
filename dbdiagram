@@ -10,7 +10,7 @@ Table Computers {
 Table Templates {
     ID int [pk]
     Name varchar [not null, unique]
-    Period varchar [not null]
+    Period varchar [not null] //Cron
     Type int [not null]
     TargetFileType bit [not null]
     End datetime
@@ -22,16 +22,9 @@ Table Templates {
 Table Paths {
     ID int [pk]
     TemplateID int [ref: > Templates.ID, not null]
-    FTPID int [ref: - FTP.ID]
+    FTP nvarchar
     Source bit [not null]
     Path nvarchar [not null]
-}
-
-Table FTP {
-    ID int [pk]
-    Hostname varchar [not null]
-    Username nvarchar
-    Password nvarchar
 }
 
 Table Jobs {
