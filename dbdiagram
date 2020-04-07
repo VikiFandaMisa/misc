@@ -13,8 +13,8 @@ Table Templates {
     Period varchar [not null] //Cron
     Type int [not null]
     TargetFileType bit [not null]
-    End datetime
     Start datetime
+    End datetime
     Paused bit [not null]
     Retention int
 }
@@ -24,7 +24,7 @@ Table Paths {
     TemplateID int [ref: > Templates.ID, not null]
     FTP nvarchar
     Source bit [not null]
-    Path nvarchar [not null]
+    Directory nvarchar [not null]
 }
 
 Table Jobs {
@@ -57,3 +57,5 @@ Table Sessions {
     UserID int [ref: > Accounts.ID]
     LastAccess datetime
 }
+
+Ref: "Templates"."TargetFileType" - "Accounts"."Username"
