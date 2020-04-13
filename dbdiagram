@@ -45,17 +45,9 @@ Table Log {
 Table Accounts {
     ID int [pk]
     Username nvarchar [not null, unique]
-    Password nvarchar [not null] //Hashed
+    Password nvarchar [not null] //SHA256
     Admin bit [not null]
     Email varchar
     SendReports bit [not null]
     ReportPeriod varchar [not null]
 }
-
-Table Sessions {
-    Token varchar [pk] //Hashed
-    UserID int [ref: > Accounts.ID]
-    LastAccess datetime
-}
-
-Ref: "Templates"."TargetFileType" - "Accounts"."Username"
