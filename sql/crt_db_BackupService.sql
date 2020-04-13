@@ -5,7 +5,7 @@ CREATE DATABASE db_BackupService CHARACTER SET utf8mb4;
 USE db_BackupService;
 
 CREATE TABLE `Computers` (
-  `ID` int PRIMARY KEY,
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Hostname` varchar(256),
   `LastSeen` datetime,
   `IP` varchar(256),
@@ -14,7 +14,7 @@ CREATE TABLE `Computers` (
 );
 
 CREATE TABLE `Templates` (
-  `ID` int PRIMARY KEY,
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Name` varchar(256) UNIQUE NOT NULL,
   `Period` varchar(256) NOT NULL,
   `Type` int NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE `Templates` (
 );
 
 CREATE TABLE `Paths` (
-  `ID` int PRIMARY KEY,
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
   `TemplateID` int NOT NULL,
   `FTP` varchar(256),
   `Source` bit NOT NULL,
@@ -34,14 +34,14 @@ CREATE TABLE `Paths` (
 );
 
 CREATE TABLE `Jobs` (
-  `ID` int PRIMARY KEY,
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
   `ComputerID` int NOT NULL,
   `TemplateID` int NOT NULL,
   `Active` bit
 );
 
 CREATE TABLE `Log` (
-  `ID` int PRIMARY KEY,
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
   `JobID` int,
   `Type` int NOT NULL,
   `Date` datetime NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `Log` (
 );
 
 CREATE TABLE `Accounts` (
-  `ID` int PRIMARY KEY,
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Username` varchar(256) UNIQUE NOT NULL,
   `Password` varchar(256) NOT NULL,
   `Admin` bit NOT NULL,
@@ -63,5 +63,7 @@ ALTER TABLE `Paths` ADD FOREIGN KEY (`TemplateID`) REFERENCES `Templates` (`ID`)
 ALTER TABLE `Jobs` ADD FOREIGN KEY (`ComputerID`) REFERENCES `Computers` (`ID`);
 
 ALTER TABLE `Jobs` ADD FOREIGN KEY (`TemplateID`) REFERENCES `Templates` (`ID`);
+
+ALTER TABLE `Jobs` ADD UNIQUE `unique_index_Computer-Template`(`ComputerID`, `TemplateID`);
 
 ALTER TABLE `Log` ADD FOREIGN KEY (`JobID`) REFERENCES `Jobs` (`ID`);
