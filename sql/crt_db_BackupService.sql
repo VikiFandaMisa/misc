@@ -7,6 +7,7 @@ USE db_BackupService;
 CREATE TABLE `Computers` (
   `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Hostname` varchar(256),
+  `Password` varchar(256),
   `LastSeen` datetime,
   `IP` varchar(256),
   `MAC` varchar(256) UNIQUE,
