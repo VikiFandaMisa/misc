@@ -11,14 +11,14 @@ CREATE TABLE `Computers` (
   `LastSeen` datetime,
   `IP` varchar(256),
   `MAC` varchar(256) UNIQUE,
-  `Status` tinyint NOT NULL
+  `Status` enum('pending', 'approved', 'denied') NOT NULL
 );
 
 CREATE TABLE `Templates` (
   `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Name` varchar(256) UNIQUE NOT NULL,
   `Period` varchar(256) NOT NULL,
-  `Type` int NOT NULL,
+  `Type` enum('full', 'differential', 'incremental') NOT NULL,
   `TargetFileType` bit NOT NULL,
   `Start` datetime,
   `End` datetime,
@@ -44,7 +44,7 @@ CREATE TABLE `Jobs` (
 CREATE TABLE `Log` (
   `ID` int PRIMARY KEY AUTO_INCREMENT,
   `JobID` int,
-  `Type` int NOT NULL,
+  `Type` enum('error', 'info', 'job') NOT NULL,
   `Date` datetime NOT NULL,
   `Message` varchar(256) NOT NULL
 );
