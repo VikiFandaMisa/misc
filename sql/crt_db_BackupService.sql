@@ -19,7 +19,7 @@ CREATE TABLE `Templates` (
   `Name` varchar(256) UNIQUE NOT NULL,
   `Period` varchar(256) NOT NULL,
   `Type` enum('full', 'differential', 'incremental') NOT NULL,
-  `TargetFileType` bit NOT NULL,
+  `TargetFileType` enum('plain', 'zip') NOT NULL,
   `Start` datetime,
   `End` datetime,
   `Paused` bit NOT NULL,
