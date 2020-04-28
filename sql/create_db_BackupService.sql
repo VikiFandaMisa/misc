@@ -60,8 +60,7 @@ CREATE TABLE `Accounts` (
 );
 
 CREATE TABLE `TokenBlacklist` (
-  `ID` int PRIMARY KEY AUTO_INCREMENT,
-  `Token` varchar(256) NOT NULL,
+  `Token` varchar(256) PRIMARY KEY,
   `Expires` datetime NOT NULL
 );
 
