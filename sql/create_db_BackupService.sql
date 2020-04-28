@@ -62,8 +62,8 @@ CREATE TABLE `Accounts` (
 CREATE TABLE `TokenBlacklist` (
   `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Token` varchar(256) NOT NULL,
-  `Expires` datetime NOT NULL,
-}
+  `Expires` datetime NOT NULL
+);
 
 ALTER TABLE `Paths` ADD FOREIGN KEY (`TemplateID`) REFERENCES `Templates` (`ID`);
 
