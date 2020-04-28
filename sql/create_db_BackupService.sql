@@ -59,6 +59,12 @@ CREATE TABLE `Accounts` (
   `ReportPeriod` varchar(256) NOT NULL
 );
 
+CREATE TABLE `TokenBlacklist` (
+  `ID` int PRIMARY KEY AUTO_INCREMENT,
+  `Token` varchar(256) NOT NULL,
+  `Expires` datetime NOT NULL,
+}
+
 ALTER TABLE `Paths` ADD FOREIGN KEY (`TemplateID`) REFERENCES `Templates` (`ID`);
 
 ALTER TABLE `Jobs` ADD FOREIGN KEY (`ComputerID`) REFERENCES `Computers` (`ID`);
