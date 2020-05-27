@@ -29,7 +29,7 @@ CREATE TABLE `Templates` (
 CREATE TABLE `Paths` (
   `ID` int PRIMARY KEY AUTO_INCREMENT,
   `TemplateID` int NOT NULL,
-  `FTP` varchar(256),
+  `Network` json,
   `Source` bit NOT NULL,
   `Directory` varchar(256) NOT NULL
 );
