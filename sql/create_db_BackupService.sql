@@ -55,8 +55,7 @@ CREATE TABLE `Accounts` (
   `Password` varchar(256) NOT NULL,
   `Admin` bit NOT NULL,
   `Email` varchar(256),
-  `SendReports` bit NOT NULL,
-  `ReportPeriod` varchar(256) NOT NULL
+  `SendReports` bit NOT NULL
 );
 
 CREATE TABLE `TokenBlacklist` (
