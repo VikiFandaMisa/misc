@@ -17,7 +17,7 @@ CREATE TABLE `Computers` (
 CREATE TABLE `Templates` (
   `ID` int PRIMARY KEY AUTO_INCREMENT,
   `Name` varchar(256) UNIQUE NOT NULL,
-  `Period` varchar(256) NOT NULL,
+  `Period` json NOT NULL,
   `Type` enum('full', 'differential', 'incremental') NOT NULL,
   `TargetFileType` enum('plain', 'zip') NOT NULL,
   `Start` datetime,

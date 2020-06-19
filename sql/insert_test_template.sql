@@ -1,7 +1,7 @@
 use db_BackupService;
 
-insert into Templates values (null, "testTemplate", "0 4 * * */1", 1, 1, now(), DATE_ADD(now(), INTERVAL 7 DAY), false, 2);
-insert into Templates values (null, "test2Template", "0 4 * * */1", 1, 1, now(), DATE_ADD(now(), INTERVAL 7 DAY), false, 2);
+insert into Templates values (null, "testTemplate", '{"PeriodMode":true,"Unit":1,"Value":1,"Days":[1],"Time":{"Hours":12,"Minutes":0}}', 1, 1, now(), DATE_ADD(now(), INTERVAL 7 DAY), false, 2);
+insert into Templates values (null, "test2Template", '{"PeriodMode":true,"Unit":1,"Value":1,"Days":[1],"Time":{"Hours":12,"Minutes":0}}', 1, 1, now(), DATE_ADD(now(), INTERVAL 7 DAY), false, 2);
 
 insert into Paths values (null, 1, null, true, "C:\\Users\\Michal\\Desktop\\test1");
 insert into Paths values (null, 1, null, true, "C:\\Users\\Michal\\Desktop\\test2");
